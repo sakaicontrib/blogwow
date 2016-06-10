@@ -14,22 +14,24 @@ package org.sakaiproject.blogwow.logic;
 import java.util.Date;
 import java.util.List;
 
-import junit.framework.Assert;
+
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Assert;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.logic.stubs.ExternalLogicStub;
 import org.sakaiproject.blogwow.logic.test.TestDataPreload;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
-import org.springframework.test.AbstractTransactionalSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+//import org.springframework.test.AbstractTransactionalSpringContextTests;
 
 /**
  * Testing the Logic implementation methods
  * 
  * @author Sakai App Builder -AZ
  */
-public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests {
+public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
 
     private static Log log = LogFactory.getLog(BlogLogicImplTest.class);
 
@@ -74,37 +76,37 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#canWriteEntry(java.lang.Long, java.lang.String)}.
      */
     public void testCanWriteEntry() {
-        assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.USER_ID));
+    	
+    	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.MAINT_USER_ID));
 
-        assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.MAINT_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+        Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
 
-        assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
-
-        assertFalse(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry3_b1.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry4_b1.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry5_b2.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry6_b2.getId(), TestDataPreload.INVALID_USER_ID));
+        Assert.assertFalse(logicImpl.canWriteEntry(tdp.entry7_b3.getId(), TestDataPreload.INVALID_USER_ID));
     }
 
     /**
@@ -116,75 +118,75 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
 
         // get all entries
         l = logicImpl.getAllVisibleEntries(tdp.blog1.getId(), TestDataPreload.ADMIN_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(4, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
-        assertTrue(!l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(4, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertTrue(!l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(tdp.blog2.getId(), TestDataPreload.ADMIN_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(tdp.blog3.getId(), TestDataPreload.ADMIN_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(!l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(!l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(l.contains(tdp.entry7_b3));
 
         // get all entries for user
         l = logicImpl.getAllVisibleEntries(tdp.blog1.getId(), TestDataPreload.USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(4, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(4, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
 
         l = logicImpl.getAllVisibleEntries(tdp.blog2.getId(), TestDataPreload.USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
 
         l = logicImpl.getAllVisibleEntries(tdp.blog1.getId(), TestDataPreload.MAINT_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(3, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(3, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
 
         l = logicImpl.getAllVisibleEntries(tdp.blog2.getId(), TestDataPreload.MAINT_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
 
         // get all entries for anonymous
         l = logicImpl.getAllVisibleEntries(tdp.blog1.getId(), TestDataPreload.INVALID_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
 
     }
 
@@ -198,63 +200,63 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
         // get all entries
         l = logicImpl.getAllVisibleEntries(new String[] { tdp.blog1.getId(), tdp.blog2.getId(), tdp.blog3.getId() },
                 TestDataPreload.ADMIN_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(7, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
-        assertTrue(l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(7, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertTrue(l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(new String[] { tdp.blog1.getId(), tdp.blog2.getId(), tdp.blog3.getId() },
                 TestDataPreload.MAINT_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(5, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(5, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(new String[] { tdp.blog1.getId(), tdp.blog2.getId(), tdp.blog3.getId() }, TestDataPreload.USER_ID,
                 null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(5, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(5, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(new String[] { tdp.blog1.getId(), tdp.blog2.getId(), tdp.blog3.getId() },
                 TestDataPreload.ACCESS_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(3, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(3, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getAllVisibleEntries(new String[] { tdp.blog1.getId(), tdp.blog2.getId(), tdp.blog3.getId() },
                 TestDataPreload.INVALID_USER_ID, null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
     }
 
@@ -267,75 +269,75 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
 
         // get all entries
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog1.getId(), TestDataPreload.ADMIN_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(3, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
-        assertTrue(!l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(3, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertTrue(!l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog2.getId(), TestDataPreload.ADMIN_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
-        assertTrue(!l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertTrue(!l.contains(tdp.entry7_b3));
 
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog3.getId(), TestDataPreload.ADMIN_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
-        assertTrue(!l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
-        assertTrue(l.contains(tdp.entry7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertTrue(!l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertTrue(l.contains(tdp.entry7_b3));
 
         // get all entries for user
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog1.getId(), TestDataPreload.USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(3, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(3, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(l.contains(tdp.entry4_b1));
 
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog2.getId(), TestDataPreload.USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(!l.contains(tdp.entry6_b2));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(!l.contains(tdp.entry6_b2));
 
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog1.getId(), TestDataPreload.MAINT_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(l.contains(tdp.entry2_b1));
-        assertTrue(l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(l.contains(tdp.entry2_b1));
+        Assert.assertTrue(l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
 
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog2.getId(), TestDataPreload.MAINT_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(l.contains(tdp.entry5_b2));
-        assertTrue(l.contains(tdp.entry6_b2));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(l.contains(tdp.entry5_b2));
+        Assert.assertTrue(l.contains(tdp.entry6_b2));
 
         // get all entries for anonymous
         l = logicImpl.getVisibleEntriesCreatedSince(tdp.blog1.getId(), TestDataPreload.INVALID_USER_ID, null, false, new Date(1230786000000L), 0);
-        assertNotNull(l);
-        assertEquals(0, l.size());
-        assertTrue(!l.contains(tdp.entry1_b1));
-        assertTrue(!l.contains(tdp.entry2_b1));
-        assertTrue(!l.contains(tdp.entry3_b1));
-        assertTrue(!l.contains(tdp.entry4_b1));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(0, l.size());
+        Assert.assertTrue(!l.contains(tdp.entry1_b1));
+        Assert.assertTrue(!l.contains(tdp.entry2_b1));
+        Assert.assertTrue(!l.contains(tdp.entry3_b1));
+        Assert.assertTrue(!l.contains(tdp.entry4_b1));
 
     }
     /**
@@ -345,36 +347,36 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
         Integer count = null;
 
         count = logicImpl.getVisibleEntryCount(tdp.blog1.getId(), TestDataPreload.ADMIN_USER_ID);
-        assertNotNull(count);
-        assertEquals(4, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(4, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog2.getId(), TestDataPreload.ADMIN_USER_ID);
-        assertNotNull(count);
-        assertEquals(2, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(2, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog3.getId(), TestDataPreload.ADMIN_USER_ID);
-        assertNotNull(count);
-        assertEquals(1, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(1, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog1.getId(), TestDataPreload.USER_ID);
-        assertNotNull(count);
-        assertEquals(4, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(4, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog2.getId(), TestDataPreload.USER_ID);
-        assertNotNull(count);
-        assertEquals(1, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(1, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog1.getId(), TestDataPreload.MAINT_USER_ID);
-        assertNotNull(count);
-        assertEquals(3, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(3, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog2.getId(), TestDataPreload.MAINT_USER_ID);
-        assertNotNull(count);
-        assertEquals(2, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(2, count.intValue());
 
         count = logicImpl.getVisibleEntryCount(tdp.blog1.getId(), TestDataPreload.INVALID_USER_ID);
-        assertNotNull(count);
-        assertEquals(1, count.intValue());
+        Assert.assertNotNull(count);
+        Assert.assertEquals(1, count.intValue());
     }
 
     /**
@@ -461,7 +463,7 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
 
         logicImpl.removeEntry(tdp.entry1_b1.getId(), TestDataPreload.LOCATION1_ID);
         entry = logicImpl.getEntryById(tdp.entry1_b1.getId(), TestDataPreload.LOCATION1_ID);
-        assertNull(entry);
+        Assert.assertNull(entry);
 
         // try to remove stuff you cannot remove
         try {
@@ -475,7 +477,7 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
 
         logicImpl.removeEntry(tdp.entry5_b2.getId(), TestDataPreload.LOCATION1_ID);
         entry = logicImpl.getEntryById(tdp.entry5_b2.getId(), TestDataPreload.LOCATION1_ID);
-        assertNull(entry);
+        Assert.assertNull(entry);
 
         // try to remove stuff you cannot remove
         try {
@@ -496,8 +498,8 @@ public class EntryLogicImplTest extends AbstractTransactionalSpringContextTests 
         tdp.entry1_b1.setText("new text");
         logicImpl.saveEntry(tdp.entry1_b1, TestDataPreload.LOCATION1_ID);
         entry = logicImpl.getEntryById(tdp.entry1_b1.getId(), TestDataPreload.LOCATION1_ID);
-        assertNotNull(entry);
-        assertEquals("new text", entry.getText());
+        Assert.assertNotNull(entry);
+        Assert.assertEquals("new text", entry.getText());
 
         // try to save stuff you cannot save
         try {

@@ -22,15 +22,15 @@
 
         <!-- generic-dao -->
         <dependency>
-            <groupId>org.sakaiproject</groupId>
+            <groupId>org.sakaiproject.genericdao</groupId>
             <artifactId>generic-dao</artifactId>
-            <version>0.9.18</version>
+            
         </dependency>
 
         <dependency>
             <groupId>org.azeckoski</groupId>
             <artifactId>reflectutils</artifactId>
-            <version>0.9.14</version>
+            <version>0.9.20</version>
         </dependency>
 
         <!-- sakai -->
@@ -141,7 +141,7 @@
                 </includes>
                 <filtering>false</filtering>
             </testResource>
-            <testResource>
+             <testResource>
                 <directory>${basedir}/src/test</directory>
                 <includes>
                     <include>hibernate-test.xml</include>
@@ -149,7 +149,7 @@
                 </includes>
                 <filtering>false</filtering>
             </testResource>
-        </testResources>
+        </testResources> 
 
     </build>
 

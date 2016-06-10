@@ -13,7 +13,7 @@ package org.sakaiproject.blogwow.logic;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,14 +21,15 @@ import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.logic.stubs.ExternalLogicStub;
 import org.sakaiproject.blogwow.logic.test.TestDataPreload;
 import org.sakaiproject.blogwow.model.BlogWowComment;
-import org.springframework.test.AbstractTransactionalSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+
 
 /**
  * Testing the Logic implementation methods
  * 
  * @author Sakai App Builder -AZ
  */
-public class CommentLogicImplTest extends AbstractTransactionalSpringContextTests {
+public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
 
     private static Log log = LogFactory.getLog(BlogLogicImplTest.class);
 
@@ -82,18 +83,18 @@ public class CommentLogicImplTest extends AbstractTransactionalSpringContextTest
      */
     public void testGetCommentById() {
         BlogWowComment comment = null;
-
+        
         comment = logicImpl.getCommentById(tdp.comment1_e5_b2.getId(), TestDataPreload.LOCATION1_ID);
-        assertNotNull(comment);
-        assertEquals(tdp.comment1_e5_b2, comment);
+        Assert.assertNotNull(comment);
+        Assert.assertEquals(tdp.comment1_e5_b2, comment);
 
         comment = logicImpl.getCommentById(tdp.comment3_e5_b2.getId(), TestDataPreload.LOCATION1_ID);
-        assertNotNull(comment);
-        assertEquals(tdp.comment3_e5_b2, comment);
+        Assert.assertNotNull(comment);
+        Assert.assertEquals(tdp.comment3_e5_b2, comment);
 
         comment = logicImpl.getCommentById(tdp.comment2_e2_b1.getId(), TestDataPreload.LOCATION1_ID);
-        assertNotNull(comment);
-        assertEquals(tdp.comment2_e2_b1, comment);
+        Assert.assertNotNull(comment);
+        Assert.assertEquals(tdp.comment2_e2_b1, comment);
 
         // cannot get to comments you have no access to
         try {
@@ -104,7 +105,7 @@ public class CommentLogicImplTest extends AbstractTransactionalSpringContextTest
         }
 
         //getting a comment that doesn't exist should return null and not throw an NPE
-        assertNull(logicImpl.getCommentById("no_such_id", TestDataPreload.LOCATION1_ID));
+        Assert.assertNull(logicImpl.getCommentById("no_such_id", TestDataPreload.LOCATION1_ID));
         
     }
 
@@ -173,26 +174,26 @@ public class CommentLogicImplTest extends AbstractTransactionalSpringContextTest
         List<BlogWowComment> l = null;
 
         l = logicImpl.getComments(tdp.entry5_b2.getId(), null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(2, l.size());
-        assertTrue(l.contains(tdp.comment1_e5_b2));
-        assertTrue(!l.contains(tdp.comment2_e2_b1));
-        assertTrue(l.contains(tdp.comment3_e5_b2));
-        assertTrue(!l.contains(tdp.comment4_e1_b1));
-        assertTrue(!l.contains(tdp.comment5_e7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(2, l.size());
+        Assert.assertTrue(l.contains(tdp.comment1_e5_b2));
+        Assert.assertTrue(!l.contains(tdp.comment2_e2_b1));
+        Assert.assertTrue(l.contains(tdp.comment3_e5_b2));
+        Assert.assertTrue(!l.contains(tdp.comment4_e1_b1));
+        Assert.assertTrue(!l.contains(tdp.comment5_e7_b3));
 
         l = logicImpl.getComments(tdp.entry1_b1.getId(), null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(1, l.size());
-        assertTrue(!l.contains(tdp.comment1_e5_b2));
-        assertTrue(!l.contains(tdp.comment2_e2_b1));
-        assertTrue(!l.contains(tdp.comment3_e5_b2));
-        assertTrue(l.contains(tdp.comment4_e1_b1));
-        assertTrue(!l.contains(tdp.comment5_e7_b3));
+        Assert.assertNotNull(l);
+        Assert.assertEquals(1, l.size());
+        Assert.assertTrue(!l.contains(tdp.comment1_e5_b2));
+        Assert.assertTrue(!l.contains(tdp.comment2_e2_b1));
+        Assert.assertTrue(!l.contains(tdp.comment3_e5_b2));
+        Assert.assertTrue(l.contains(tdp.comment4_e1_b1));
+        Assert.assertTrue(!l.contains(tdp.comment5_e7_b3));
 
         l = logicImpl.getComments(tdp.entry3_b1.getId(), null, false, 0, 0);
-        assertNotNull(l);
-        assertEquals(0, l.size());
+        Assert.assertNotNull(l);
+        Assert.assertEquals(0, l.size());
 
         try {
             logicImpl.getComments(tdp.entry7_b3.getId(), null, false, 0, 0);
@@ -207,66 +208,66 @@ public class CommentLogicImplTest extends AbstractTransactionalSpringContextTest
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#canRemoveComment(java.lang.Long, java.lang.String)}.
      */
     public void testCanRemoveComment() {
-        assertFalse(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.USER_ID));
 
-        assertTrue(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.MAINT_USER_ID));
 
-        assertTrue(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
 
-        assertFalse(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment3_e5_b2.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment4_e1_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment5_e7_b3.getId(), TestDataPreload.INVALID_USER_ID));
     }
 
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#canAddComment(java.lang.Long, java.lang.String)}.
      */
     public void testCanAddComment() {
-        assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.USER_ID));
 
-        assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.MAINT_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.MAINT_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.MAINT_USER_ID));
 
-        assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.ADMIN_USER_ID));
-        assertTrue(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.ADMIN_USER_ID));
+    	Assert.assertTrue(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.ADMIN_USER_ID));
 
-        assertFalse(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.INVALID_USER_ID));
-        assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry3_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry4_b1.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry5_b2.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry6_b2.getId(), TestDataPreload.INVALID_USER_ID));
+    	Assert.assertFalse(logicImpl.canAddComment(tdp.entry7_b3.getId(), TestDataPreload.INVALID_USER_ID));
     }
 
 }

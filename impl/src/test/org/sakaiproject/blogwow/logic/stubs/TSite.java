@@ -907,4 +907,10 @@ public class TSite implements Site {
 		return null;
 	}
 
+	@Override
+	public Collection<Group> getGroupsWithMembers(String[] userIds) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
