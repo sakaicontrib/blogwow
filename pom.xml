@@ -8,13 +8,14 @@
         <version>12-SNAPSHOT</version>
 	<relativePath>../master/pom.xml</relativePath>
     </parent>
-
     <name>Blog Wow!</name>
     <groupId>org.sakaiproject.blogwow</groupId>
     <artifactId>sakai-blogwow-base</artifactId>
     <version>12-SNAPSHOT</version>
     <packaging>pom</packaging>
-
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
     <!-- handles the management of all related dependencies -->
     <dependencyManagement>
         <dependencies>

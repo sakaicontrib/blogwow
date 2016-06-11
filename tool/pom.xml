@@ -14,11 +14,10 @@
       <artifactId>sakai-blogwow-base</artifactId>
       <version>12-SNAPSHOT</version><!--blogwow.version-->
    </parent>
-
-   <properties>
-      <rsfutil.version>0.8.0-SNAPSHOT</rsfutil.version>
-   </properties>
-
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+   
    <dependencies>
 
       <!-- internal -->
