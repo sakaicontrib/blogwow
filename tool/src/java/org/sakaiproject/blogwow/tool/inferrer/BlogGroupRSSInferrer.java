@@ -18,8 +18,8 @@ import org.sakaiproject.blogwow.logic.entity.BlogGroupRssEntityProvider;
 import org.sakaiproject.blogwow.tool.params.BlogRssViewParams;
 import org.sakaiproject.blogwow.tool.producers.BlogRSSProducer;
 import org.sakaiproject.entitybroker.EntityReference;
+import org.sakaiproject.rsf.entitybroker.EntityViewParamsInferrer;
 
-import uk.ac.cam.caret.sakai.rsf.entitybroker.EntityViewParamsInferrer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 /**

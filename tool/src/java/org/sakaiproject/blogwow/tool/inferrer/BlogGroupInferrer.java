@@ -7,7 +7,8 @@ import org.sakaiproject.blogwow.logic.entity.BlogGroupEntityProvider;
 import org.sakaiproject.blogwow.tool.params.BlogParams;
 import org.sakaiproject.blogwow.tool.producers.BlogViewProducer;
 import org.sakaiproject.entitybroker.EntityReference;
-import uk.ac.cam.caret.sakai.rsf.entitybroker.EntityViewParamsInferrer;
+import org.sakaiproject.rsf.entitybroker.EntityViewParamsInferrer;
+
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 public class BlogGroupInferrer implements EntityViewParamsInferrer {

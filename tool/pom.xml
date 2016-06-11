@@ -28,33 +28,25 @@
          <version>${project.version}</version>
       </dependency>
 
-      <!-- RSF -->
-      <dependency>
-         <groupId>uk.org.ponder.sakairsf</groupId>
-         <artifactId>SakaiRSFComponents-templates</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>war</type>
-      </dependency>
-      <dependency>
-         <groupId>uk.org.ponder.sakairsf</groupId>
-         <artifactId>SakaiRSFComponents-evolvers</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>jar</type>
-      </dependency>
-      <dependency>
-         <groupId>uk.org.ponder.sakairsf</groupId>
-         <artifactId>sakairsf</artifactId>
-         <version>${rsfutil.version}</version>
-         <type>jar</type>
-      </dependency>
-
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>servlet-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-
-      <!-- Sakai dependencies (all RSF apps must have this) -->
+ <!-- Sakai RSF dependency -->
+        <dependency>
+            <groupId>org.sakaiproject.rsf</groupId>
+            <artifactId>sakai-rsf-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.rsf</groupId>
+            <artifactId>sakai-rsf-web-evolvers</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.rsf</groupId>
+            <artifactId>sakai-rsf-web-templates</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- Sakai dependencies (all RSF apps must have these) -->
       <dependency>
          <groupId>org.sakaiproject.kernel</groupId>
          <artifactId>sakai-kernel-util</artifactId>

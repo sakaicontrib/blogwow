@@ -16,9 +16,10 @@ import org.sakaiproject.blogwow.logic.entity.BlogEntryEntityProvider;
 import org.sakaiproject.blogwow.tool.params.BlogParams;
 import org.sakaiproject.blogwow.tool.producers.BlogViewProducer;
 import org.sakaiproject.entitybroker.EntityReference;
+import org.sakaiproject.rsf.entitybroker.EntityViewParamsInferrer;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
 
-import uk.ac.cam.caret.sakai.rsf.entitybroker.EntityViewParamsInferrer;
+
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 /**
