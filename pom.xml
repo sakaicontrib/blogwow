@@ -11,7 +11,7 @@
     <name>Blog Wow!</name>
     <groupId>org.sakaiproject.blogwow</groupId>
     <artifactId>sakai-blogwow-base</artifactId>
-    <version>12-SNAPSHOT</version>
+    <version>11-SNAPSHOT</version>
     <packaging>pom</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,14 +22,14 @@
             <dependency>
                 <groupId>org.sakaiproject.blogwow</groupId>
                 <artifactId>sakai-blogwow-api</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>11-SNAPSHOT</version>
                 <scope>provided</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.sakaiproject.blogwow</groupId>
                 <artifactId>sakai-blogwow-impl</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>11-SNAPSHOT</version>
                 <type>jar</type>
             </dependency>
         </dependencies>
