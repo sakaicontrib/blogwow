@@ -65,17 +65,17 @@
           <id>snapshots</id>
           <activation>
             <activeByDefault>false</activeByDefault>
-            <modules>
-                <module>api</module>
-                <module>impl</module>
-                <module>pack</module>
-                <module>tool</module>
-                <module>help</module>
-            </modules>
             <property>
               <name>snapshots</name>
             </property>
           </activation>
+          <modules>
+              <module>api</module>
+              <module>impl</module>
+              <module>pack</module>
+              <module>tool</module>
+              <module>help</module>
+          </modules>
           <repositories>
             <repository>
               <id>sonatype-nexus-snapshots</id>
