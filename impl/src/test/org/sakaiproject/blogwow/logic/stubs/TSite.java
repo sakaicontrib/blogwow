@@ -405,6 +405,16 @@ public class TSite implements Site {
     /*
      * (non-Javadoc)
      * 
+     * @see org.sakaiproject.site.api.Site#deleteGroup(org.sakaiproject.site.api.Group)
+     */
+    public void deleteGroup(Group group) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.sakaiproject.site.api.Site#removePage(org.sakaiproject.site.api.SitePage)
      */
     public void removePage(SitePage page) {
