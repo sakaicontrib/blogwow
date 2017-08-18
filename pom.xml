@@ -22,15 +22,21 @@
             <dependency>
                 <groupId>org.sakaiproject.blogwow</groupId>
                 <artifactId>sakai-blogwow-api</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <scope>provided</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.sakaiproject.blogwow</groupId>
                 <artifactId>sakai-blogwow-impl</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.sakaiproject.entitybroker</groupId>
+                <artifactId>entitybroker-api</artifactId>
+                <version>${sakai.version}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
