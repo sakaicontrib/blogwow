@@ -150,7 +150,8 @@ public class BlogWowDaoImpl extends HibernateGeneralGenericDao implements BlogWo
             hql += " order by entry." + sortProperty + " desc";
          }
       }
-      Query query = getSession().createQuery(hql);
+      Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+      Query query = session.createQuery(hql);
       query.setFirstResult(start);
       if (limit > 0) {
          query.setMaxResults(limit);
@@ -324,7 +325,8 @@ public class BlogWowDaoImpl extends HibernateGeneralGenericDao implements BlogWo
             hql += " order by entry." + sortProperty + " desc";
          }
       }
-      Query query = getSession().createQuery(hql);
+      Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+      Query query = session.createQuery(hql);
 
       if (limit > 0) {
          query.setMaxResults(limit);
