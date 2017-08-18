@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
 import org.hibernate.Query;
 import org.sakaiproject.blogwow.constants.BlogConstants;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
