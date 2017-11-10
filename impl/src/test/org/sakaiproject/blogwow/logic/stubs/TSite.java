@@ -913,4 +913,8 @@ public class TSite implements Site {
 		return null;
 	}
 
+        @Override
+        public void deleteGroup(Group group) {
+		// TODO Auto-generated method stub
+        }
 }
