@@ -38,7 +38,7 @@ import org.w3c.dom.Element;
 /**
  * @author Aaron Zeckoski (aaronz@vt.edu)
  */
-@SuppressWarnings("unchecked")
+
 public class TSite implements Site {
 
     private static final long serialVersionUID = 4761288804996964705L;

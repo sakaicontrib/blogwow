@@ -14,44 +14,38 @@ package org.sakaiproject.blogwow.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.blogwow.dao.BlogWowDao;
-import org.sakaiproject.blogwow.logic.test.TestDataPreload;
-import org.sakaiproject.blogwow.model.BlogWowEntry;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.sakaiproject.blogwow.logic.test.TestDataPreload;
+import org.sakaiproject.blogwow.model.BlogWowEntry;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Testing for the specialized DAO methods (do not test the Generic Dao methods)
  * 
  * @author Sakai App Builder -AZ
  */
-public class BlogWowDaoImplTest extends  AbstractJUnit4SpringContextTests {
+@DirtiesContext
+@ContextConfiguration(locations={
+		"/hibernate-test.xml", "/spring-hibernate.xml"})	
+@Slf4j
+public class BlogWowDaoImplTest extends  AbstractTransactionalJUnit4SpringContextTests{
 
-    private static Log log = LogFactory.getLog(BlogWowDaoImplTest.class);
 
-    protected BlogWowDao dao;
+    BlogWowDao dao;
 
     private TestDataPreload tdp = new TestDataPreload();
 
-    protected String[] getConfigLocations() {
-        // point to the needed spring config files, must be on the classpath
-        // (add component/src/webapp/WEB-INF to the build path in Eclipse),
-        // they also need to be referenced in the project.xml file
-        return new String[] { "hibernate-test.xml", "spring-hibernate.xml" };
-    }
-
-    // run this before each test starts
-    protected void onSetUpBeforeTransaction() throws Exception {
-    }
-
     // run this before each test starts and as part of the transaction
-    protected void onSetUpInTransaction() {
+    @Before
+    public void onSetUpBeforeTransaction() throws Exception {
         // load the spring created dao class bean from the Spring Application Context
-        dao = (BlogWowDao) applicationContext.getBean("org.sakaiproject.blogwow.dao.BlogWowDao");
+         dao = (BlogWowDao) applicationContext.getBean("org.sakaiproject.blogwow.dao.BlogWowDao");
         if (dao == null) {
             log.error("onSetUpInTransaction: DAO could not be retrieved from spring context");
         } else {
@@ -73,6 +67,7 @@ public class BlogWowDaoImplTest extends  AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.dao.impl.BlogWowDaoImpl#getLocationsForBlogsIds(java.lang.String[])}.
      */
+    @Test
     public void testGetLocationsForBlogsIds() {
         List<String> locs = null;
 
@@ -101,6 +96,7 @@ public class BlogWowDaoImplTest extends  AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.dao.impl.BlogWowDaoImpl#getBlogPermEntries(String[], String, String[], String[], String, boolean, int, int)}.
      */
+    @Test
     public void testGetBlogPermEntries() {
         List<BlogWowEntry> entries = null;
 
@@ -186,6 +182,7 @@ public class BlogWowDaoImplTest extends  AbstractJUnit4SpringContextTests {
         Assert.assertTrue(entries.contains(tdp.entry3_b1));
     }
 
+    @Test
     public void testGetBlogPermCount()
     {
     	// count all public entries

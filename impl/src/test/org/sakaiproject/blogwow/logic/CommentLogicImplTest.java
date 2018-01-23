@@ -14,14 +14,17 @@ package org.sakaiproject.blogwow.logic;
 import java.util.List;
 
 import org.junit.Assert;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
+import org.junit.Test;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.logic.stubs.ExternalLogicStub;
 import org.sakaiproject.blogwow.logic.test.TestDataPreload;
 import org.sakaiproject.blogwow.model.BlogWowComment;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -29,9 +32,13 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * 
  * @author Sakai App Builder -AZ
  */
-public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
+@DirtiesContext
+@ContextConfiguration(locations={
+		"/hibernate-test.xml", "/spring-hibernate.xml"})	
+@Slf4j
+public class CommentLogicImplTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    private static Log log = LogFactory.getLog(BlogLogicImplTest.class);
+    
 
     protected CommentLogicImpl logicImpl;
 
@@ -39,19 +46,11 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
 
     private ExternalLogicStub logicStub = new ExternalLogicStub();
 
-    protected String[] getConfigLocations() {
-        // point to the needed spring config files, must be on the classpath
-        // (add component/src/webapp/WEB-INF to the build path in Eclipse),
-        // they also need to be referenced in the project.xml file
-        return new String[] { "hibernate-test.xml", "spring-hibernate.xml" };
-    }
 
     // run this before each test starts
-    protected void onSetUpBeforeTransaction() throws Exception {
-    }
+    @Before
+    public void onSetUpBeforeTransaction() throws Exception {
 
-    // run this before each test starts and as part of the transaction
-    protected void onSetUpInTransaction() {
         // load the spring created dao class bean from the Spring Application Context
         BlogWowDao dao = (BlogWowDao) applicationContext.getBean("org.sakaiproject.blogwow.dao.BlogWowDao");
         if (dao == null) {
@@ -81,6 +80,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#getCommentById(java.lang.Long, java.lang.String)}.
      */
+    @Test
     public void testGetCommentById() {
         BlogWowComment comment = null;
         
@@ -112,6 +112,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#removeComment(java.lang.Long, java.lang.String)}.
      */
+    @Test
     public void testRemoveComment() {
 
         try {
@@ -138,6 +139,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#saveComment(org.sakaiproject.blogwow.model.BlogWowComment, java.lang.String)}.
      */
+    @Test
     public void testSaveComment() {
 
         // cannot save existing comment
@@ -170,6 +172,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#getComments(java.lang.Long, java.lang.String, boolean, int, int)}.
      */
+    @Test
     public void testGetComments() {
         List<BlogWowComment> l = null;
 
@@ -207,6 +210,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#canRemoveComment(java.lang.Long, java.lang.String)}.
      */
+    @Test
     public void testCanRemoveComment() {
     	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment1_e5_b2.getId(), TestDataPreload.USER_ID));
     	Assert.assertFalse(logicImpl.canRemoveComment(tdp.comment2_e2_b1.getId(), TestDataPreload.USER_ID));
@@ -236,6 +240,7 @@ public class CommentLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.CommentLogicImpl#canAddComment(java.lang.Long, java.lang.String)}.
      */
+    @Test
     public void testCanAddComment() {
     	Assert.assertTrue(logicImpl.canAddComment(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
     	Assert.assertTrue(logicImpl.canAddComment(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));

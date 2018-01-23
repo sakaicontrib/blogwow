@@ -14,46 +14,41 @@ package org.sakaiproject.blogwow.logic;
 import java.util.Date;
 import java.util.List;
 
-
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.logic.stubs.ExternalLogicStub;
 import org.sakaiproject.blogwow.logic.test.TestDataPreload;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-//import org.springframework.test.AbstractTransactionalSpringContextTests;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Testing the Logic implementation methods
  * 
  * @author Sakai App Builder -AZ
  */
-public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
+@DirtiesContext
+@ContextConfiguration(locations={
+		"/hibernate-test.xml", "/spring-hibernate.xml"})	
+@Slf4j
+public class EntryLogicImplTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    private static Log log = LogFactory.getLog(BlogLogicImplTest.class);
-
+    
     protected EntryLogicImpl logicImpl;
 
     private TestDataPreload tdp = new TestDataPreload();
 
     private ExternalLogicStub logicStub = new ExternalLogicStub();
 
-    protected String[] getConfigLocations() {
-        // point to the needed spring config files, must be on the classpath
-        // (add component/src/webapp/WEB-INF to the build path in Eclipse),
-        // they also need to be referenced in the project.xml file
-        return new String[] { "hibernate-test.xml", "spring-hibernate.xml" };
-    }
 
     // run this before each test starts
-    protected void onSetUpBeforeTransaction() throws Exception {
-    }
-
-    // run this before each test starts and as part of the transaction
-    protected void onSetUpInTransaction() {
+    @Before
+    public void onSetUpBeforeTransaction() throws Exception {
         // load the spring created dao class bean from the Spring Application Context
         BlogWowDao dao = (BlogWowDao) applicationContext.getBean("org.sakaiproject.blogwow.dao.BlogWowDao");
         if (dao == null) {
@@ -75,6 +70,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#canWriteEntry(java.lang.Long, java.lang.String)}.
      */
+    @Test
     public void testCanWriteEntry() {
     	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry1_b1.getId(), TestDataPreload.USER_ID));
     	Assert.assertTrue(logicImpl.canWriteEntry(tdp.entry2_b1.getId(), TestDataPreload.USER_ID));
@@ -113,6 +109,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#getAllVisibleEntries(java.lang.Long, java.lang.String, java.lang.String, boolean, int, int)}.
      */
+    @Test
     public void testGetAllVisibleEntriesLongStringStringBooleanIntInt() {
         List<BlogWowEntry> l = null;
 
@@ -194,6 +191,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#getAllVisibleEntries(java.lang.Long[], java.lang.String, java.lang.String, boolean, int, int)}.
      */
+    @Test
     public void testGetAllVisibleEntriesLongArrayStringStringBooleanIntInt() {
         List<BlogWowEntry> l = null;
 
@@ -264,6 +262,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#getAllVisibleEntries(java.lang.Long, java.lang.String, java.lang.String, boolean, int, int)}.
      */
+    @Test
     public void testGetAllVisibleEntriesCreatedSinceLongStringStringBooleanDateInt() {
         List<BlogWowEntry> l = null;
 
@@ -343,6 +342,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.getVisibleEntryCount(java.lang.String, java.lang.String)}.
      */
+    @Test
     public void testGetVisibleEntryCount() {
         Integer count = null;
 
@@ -382,6 +382,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#getEntryById(java.lang.Long)}.
      */
+    @Test
     public void testGetEntryById() {
         BlogWowEntry entry = null;
 
@@ -444,6 +445,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#removeEntry(java.lang.Long)}.
      */
+    @Test
     public void testRemoveEntry() {
         BlogWowEntry entry = null;
 
@@ -492,6 +494,7 @@ public class EntryLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.EntryLogicImpl#saveEntry(org.sakaiproject.blogwow.model.BlogWowEntry)}.
      */
+    @Test
     public void testSaveEntry() {
         BlogWowEntry entry = null;
 
