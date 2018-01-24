@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
-		<version>12-SNAPSHOT</version><!--blogwow.version-->
+		<version>12-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -94,12 +94,7 @@
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
         </dependency>
-        
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-        </dependency>
+      
 
 
         <dependency>
@@ -113,11 +108,7 @@
       		<artifactId>ehcache-core</artifactId>
       		<scope>test</scope>
     	</dependency>
-    	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
+
 
     </dependencies>
 

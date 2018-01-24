@@ -16,14 +16,15 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.logic.stubs.ExternalLogicStub;
 import org.sakaiproject.blogwow.logic.test.TestDataPreload;
 import org.sakaiproject.blogwow.model.BlogWowBlog;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -31,8 +32,12 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * 
  * @author Sakai App Builder -AZ
  */
-public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
-    private static Log log = LogFactory.getLog(BlogLogicImplTest.class);
+@DirtiesContext
+@ContextConfiguration(locations={
+			"/hibernate-test.xml", "/spring-hibernate.xml"})	
+@Slf4j
+public class BlogLogicImplTest extends AbstractTransactionalJUnit4SpringContextTests {
+    
 
     protected BlogLogicImpl logicImpl;
 
@@ -40,19 +45,10 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
 
     private ExternalLogicStub logicStub = new ExternalLogicStub();
 
-    protected String[] getConfigLocations() {
-        // point to the needed spring config files, must be on the classpath
-        // (add component/src/webapp/WEB-INF to the build path in Eclipse),
-        // they also need to be referenced in the project.xml file
-        return new String[] { "hibernate-test.xml", "spring-hibernate.xml" };
-    }
 
     // run this before each test starts
-    protected void onSetUpBeforeTransaction() throws Exception {
-    }
-
-    // run this before each test starts and as part of the transaction
-    protected void onSetUpInTransaction() {
+    @Before
+    public void onSetUpBeforeTransaction() throws Exception {
         // load the spring created dao class bean from the Spring Application Context
         BlogWowDao dao = (BlogWowDao) applicationContext.getBean("org.sakaiproject.blogwow.dao.BlogWowDao");
         if (dao == null) {
@@ -79,6 +75,7 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.BlogLogicImpl#canWriteBlog(org.sakaiproject.blogwow.model.BlogWowBlog, java.lang.String, java.lang.String)}.
      */
+    @Test
     public void testCanWriteBlog() {
         Assert.assertTrue(logicImpl.canWriteBlog(tdp.blog1, TestDataPreload.LOCATION1_ID, TestDataPreload.USER_ID));
         Assert.assertTrue(logicImpl.canWriteBlog(tdp.blog2, TestDataPreload.LOCATION1_ID, TestDataPreload.MAINT_USER_ID));
@@ -102,6 +99,7 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
      * Test method for
      * {@link org.sakaiproject.blogwow.logic.impl.BlogLogicImpl#makeBlogByLocationAndUser(java.lang.String, java.lang.String)}.
      */
+    @Test
     public void testGetBlogByLocationAndUser() {
         BlogWowBlog blog = null;
 
@@ -138,6 +136,7 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.BlogLogicImpl#getAllVisibleBlogs(java.lang.String)}.
      */
+    @Test
     public void testGetAllVisibleBlogs() {
         List<BlogWowBlog> l = null;
         
@@ -171,6 +170,7 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.BlogLogicImpl#getBlogById(java.lang.Long)}.
      */
+    @Test
     public void testGetBlogById() {
         BlogWowBlog blog = null;
 
@@ -187,6 +187,7 @@ public class BlogLogicImplTest extends AbstractJUnit4SpringContextTests {
     /**
      * Test method for {@link org.sakaiproject.blogwow.logic.impl.BlogLogicImpl#saveBlog(org.sakaiproject.blogwow.model.BlogWowBlog)}.
      */
+    @Test
     public void testSaveBlog() {
         BlogWowBlog blog = new BlogWowBlog(TestDataPreload.USER_ID, TestDataPreload.LOCATION1_ID, "blog");
         logicImpl.saveBlog(blog, TestDataPreload.LOCATION1_ID);

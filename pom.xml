@@ -6,12 +6,11 @@
         <groupId>org.sakaiproject</groupId>
         <artifactId>master</artifactId>
         <version>12-SNAPSHOT</version>
-	<relativePath>../master/pom.xml</relativePath>
+	    <relativePath>../master/pom.xml</relativePath>
     </parent>
     <name>Blog Wow!</name>
     <groupId>org.sakaiproject.blogwow</groupId>
     <artifactId>sakai-blogwow-base</artifactId>
-    <version>12-SNAPSHOT</version>
     <packaging>pom</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,16 +19,16 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.sakaiproject.blogwow</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>sakai-blogwow-api</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <scope>provided</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
-                <groupId>org.sakaiproject.blogwow</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>sakai-blogwow-impl</artifactId>
-                <version>12-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <type>jar</type>
             </dependency>
         </dependencies>
