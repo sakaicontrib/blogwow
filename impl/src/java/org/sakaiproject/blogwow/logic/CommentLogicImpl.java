@@ -14,12 +14,7 @@ package org.sakaiproject.blogwow.logic;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
-import org.sakaiproject.blogwow.logic.CommentLogic;
-import org.sakaiproject.blogwow.logic.EntryLogic;
-import org.sakaiproject.blogwow.logic.ExternalLogic;
 import org.sakaiproject.blogwow.model.BlogWowBlog;
 import org.sakaiproject.blogwow.model.BlogWowComment;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
@@ -27,14 +22,16 @@ import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Implementation
  * 
  * @author Sakai App Builder -AZ
  */
+@Slf4j
 public class CommentLogicImpl implements CommentLogic {
 
-    private static Log log = LogFactory.getLog(CommentLogicImpl.class);
 
     private ExternalLogic externalLogic;
 
