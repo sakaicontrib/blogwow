@@ -1,7 +1,6 @@
 package org.sakaiproject.blogwow.logic.entity;
 
 import org.sakaiproject.blogwow.logic.BlogLogic;
-import org.sakaiproject.blogwow.logic.entity.BlogGroupRssEntityProvider;
 import org.sakaiproject.entitybroker.EntityBroker;
 import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
 import org.sakaiproject.entitybroker.entityprovider.capabilities.AutoRegisterEntityProvider;

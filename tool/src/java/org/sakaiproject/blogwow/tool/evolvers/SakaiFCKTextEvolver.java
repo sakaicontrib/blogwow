@@ -11,16 +11,17 @@ import java.util.Iterator;
 import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.content.api.ContentHostingService;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.htmlutil.HTMLUtil;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInput;
-import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.components.decorators.UIDecorator;
 import uk.org.ponder.rsf.components.decorators.UIFreeAttributeDecorator;
 import uk.org.ponder.rsf.evolvers.TextInputEvolver;
 
+@Slf4j
 public class SakaiFCKTextEvolver implements TextInputEvolver {
 	public static final String COMPONENT_ID = "sakai-FCKEditor:";
 	private String context;
@@ -64,7 +65,7 @@ public class SakaiFCKTextEvolver implements TextInputEvolver {
 					} catch (Exception e) {
 						// height isn't set to a string, show the developer a stack trace since
 						// he/she is lost...
-						e.printStackTrace();
+						log.warn(e.getMessage(), e);
 					}
 				} else if (((UIFreeAttributeDecorator) decorator).attributes.get("width") != null) {
 					sizeset = true;
@@ -73,7 +74,7 @@ public class SakaiFCKTextEvolver implements TextInputEvolver {
 					} catch (Exception e) {
 						// height isn't set to a string, show the developer a stack trace since
 						// he/she is lost...
-						e.printStackTrace();
+						log.warn(e.getMessage(), e);
 					}
 				}
 			}
