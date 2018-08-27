@@ -6,7 +6,6 @@ import java.util.List;
 import org.sakaiproject.blogwow.constants.BlogConstants;
 import org.sakaiproject.blogwow.logic.EntryLogic;
 import org.sakaiproject.blogwow.logic.ExternalLogic;
-import org.sakaiproject.blogwow.model.BlogWowEntry;
 import org.sakaiproject.blogwow.tool.otp.EntryLocator;
 import org.sakaiproject.blogwow.tool.params.BlogEntryParams;
 import org.sakaiproject.blogwow.tool.params.SimpleBlogParams;

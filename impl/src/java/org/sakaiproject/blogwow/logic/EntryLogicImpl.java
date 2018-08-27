@@ -30,14 +30,16 @@ import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Implementation
  * 
  * @author Sakai App Builder -AZ
  */
+@Slf4j
 public class EntryLogicImpl implements EntryLogic {
 
-   private static Log log = LogFactory.getLog(EntryLogicImpl.class);
 
    private ExternalLogic externalLogic;
    public void setExternalLogic(ExternalLogic externalLogic) {

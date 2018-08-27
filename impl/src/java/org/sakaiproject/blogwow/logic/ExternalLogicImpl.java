@@ -14,8 +14,6 @@ package org.sakaiproject.blogwow.logic;
 import java.net.URLEncoder;
 import java.util.Date;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.azeckoski.reflectutils.ReflectUtils;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.sakaiproject.authz.api.FunctionManager;
@@ -43,14 +41,16 @@ import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.util.FormattedText;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * This is the implementation for logic which is external to our app logic
  * 
  * @author Sakai App Builder -AZ
  */
+@Slf4j
 public class ExternalLogicImpl implements ExternalLogic {
 
-   private static Log log = LogFactory.getLog(ExternalLogicImpl.class);
 
    private FunctionManager functionManager;
    public void setFunctionManager(FunctionManager functionManager) {

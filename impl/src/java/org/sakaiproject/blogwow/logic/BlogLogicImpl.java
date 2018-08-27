@@ -14,24 +14,22 @@ package org.sakaiproject.blogwow.logic;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
-import org.sakaiproject.blogwow.logic.BlogLogic;
-import org.sakaiproject.blogwow.logic.ExternalLogic;
 import org.sakaiproject.blogwow.model.BlogWowBlog;
 import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the implementation of the blog business logic interface
  * 
  * @author Sakai App Builder -AZ
  */
+@Slf4j
 public class BlogLogicImpl implements BlogLogic {
 
-    private static Log log = LogFactory.getLog(BlogLogicImpl.class);
 
     private ExternalLogic externalLogic;
     public void setExternalLogic(ExternalLogic externalLogic) {

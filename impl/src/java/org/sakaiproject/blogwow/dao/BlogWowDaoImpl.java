@@ -11,22 +11,20 @@
 
 package org.sakaiproject.blogwow.dao;
 
-import java.lang.StringBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.sakaiproject.blogwow.constants.BlogConstants;
-import org.sakaiproject.blogwow.dao.BlogWowDao;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.util.StringUtil;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementations of any specialized DAO methods from the specialized DAO that allows the developer to extend the functionality of the
@@ -34,9 +32,10 @@ import org.sakaiproject.util.StringUtil;
  * 
  * @author Sakai App Builder -AZ
  */
+@Slf4j
 public class BlogWowDaoImpl extends HibernateGeneralGenericDao implements BlogWowDao {
 
-   private static Log log = LogFactory.getLog(BlogWowDaoImpl.class);
+  
 
    public void init() {
       log.debug("init");

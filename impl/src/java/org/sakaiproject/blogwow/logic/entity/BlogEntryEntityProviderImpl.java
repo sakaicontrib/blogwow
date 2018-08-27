@@ -14,15 +14,12 @@
 
 package org.sakaiproject.blogwow.logic.entity;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.sakaiproject.blogwow.logic.BlogLogic;
 import org.sakaiproject.blogwow.logic.EntryLogic;
-import org.sakaiproject.blogwow.logic.entity.BlogEntryEntityProvider;
 import org.sakaiproject.blogwow.model.BlogWowBlog;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
 import org.sakaiproject.entitybroker.DeveloperHelperService;
