@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
-        <version>12-SNAPSHOT</version>
+        <version>19-SNAPSHOT</version>
     </parent>
 
     <organization>
