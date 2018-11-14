@@ -88,7 +88,16 @@ public class TUser implements User {
         return null;
     }
 
+    public String getDisplayId(String context) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     public String getDisplayName() {
+        return this.displayName;
+    }
+
+    public String getDisplayName(String context) {
         return this.displayName;
     }
 
