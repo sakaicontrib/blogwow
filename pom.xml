@@ -6,8 +6,8 @@
         <groupId>org.sakaiproject</groupId>
         <artifactId>master</artifactId>
         <version>12-SNAPSHOT</version>
-	    <relativePath>../master/pom.xml</relativePath>
     </parent>
+
     <name>Blog Wow!</name>
     <groupId>org.sakaiproject.blogwow</groupId>
     <artifactId>sakai-blogwow-base</artifactId>
@@ -40,19 +40,19 @@
         <url>https://source.sakaiproject.org/contrib/programmerscafe/blogwow/trunk</url>
     </scm>
 
+    <modules>
+        <module>api</module>
+        <module>impl</module>
+        <module>pack</module>
+        <module>tool</module>
+    </modules>
+
     <profiles>
         <profile>
             <id>full</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <modules>
-                <module>api</module>
-                <module>impl</module>
-                <module>pack</module>
-                <module>tool</module>
-                <module>help</module>
-            </modules>
         </profile>
         <profile>
             <id>tool</id>
@@ -71,6 +71,28 @@
             <modules>
                 <module>impl</module>
             </modules>
+        </profile>
+        <profile>
+          <id>snapshots</id>
+          <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+              <name>snapshots</name>
+            </property>
+          </activation>
+          <repositories>
+            <repository>
+              <id>sonatype-nexus-snapshots</id>
+              <name>Sonatype Nexus Snapshots</name>
+              <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+              <releases>
+                <enabled>false</enabled>
+              </releases>
+              <snapshots>
+                <enabled>true</enabled>
+              </snapshots>
+            </repository>
+          </repositories>
         </profile>
     </profiles>
 
