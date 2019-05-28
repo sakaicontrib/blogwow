@@ -4,12 +4,15 @@
     <name>BlogWow IMPL</name>
     <groupId>org.sakaiproject.blogwow</groupId>
     <artifactId>sakai-blogwow-impl</artifactId>
-    <packaging>jar</packaging>
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
 
     <parent>
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
-		<version>19-SNAPSHOT</version>
+        <version>19-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -17,7 +20,7 @@
         <dependency>
             <groupId>org.sakaiproject.blogwow</groupId>
             <artifactId>sakai-blogwow-api</artifactId>
-			<version>${project.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- generic-dao -->
@@ -95,19 +98,17 @@
             <artifactId>javassist</artifactId>
         </dependency>
       
-
-
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>test</scope>
         </dependency>
 
-    	<dependency>
-      		<groupId>net.sf.ehcache</groupId>
-      		<artifactId>ehcache-core</artifactId>
-      		<scope>test</scope>
-    	</dependency>
+      <dependency>
+          <groupId>net.sf.ehcache</groupId>
+          <artifactId>ehcache-core</artifactId>
+          <scope>test</scope>
+      </dependency>
 
 
     </dependencies>
@@ -124,8 +125,8 @@
         </resources>
 
         <testResources>
-            <testResource>
-                <directory>${basedir}/../pack/src/webapp/WEB-INF</directory>
+           <testResource>
+                <directory>${basedir}/src/webapp/WEB-INF</directory>
                 <includes>
                     <include>spring-hibernate.xml</include>
                 </includes>
