@@ -17,12 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.blogwow.constants.BlogConstants;
 import org.sakaiproject.blogwow.dao.BlogWowDao;
-import org.sakaiproject.blogwow.logic.EntryLogic;
-import org.sakaiproject.blogwow.logic.ExternalLogic;
 import org.sakaiproject.blogwow.model.BlogWowBlog;
 import org.sakaiproject.blogwow.model.BlogWowComment;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
