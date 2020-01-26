@@ -39,8 +39,9 @@ import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
-import org.sakaiproject.util.FormattedText;
+import org.sakaiproject.util.api.FormattedText;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -51,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExternalLogicImpl implements ExternalLogic {
 
-
+   @Setter private FormattedText formattedText;
    private FunctionManager functionManager;
    public void setFunctionManager(FunctionManager functionManager) {
       this.functionManager = functionManager;
@@ -240,7 +241,7 @@ public class ExternalLogicImpl implements ExternalLogic {
 
       // clean up the string using Sakai text format (should stop XSS)
       // CANNOT CHANGE THIS TO STRINGBUILDER OR 2.4.x and below will fail -AZ
-      String cleanup = FormattedText.processFormattedText(userSubmittedString, new StringBuffer()).trim();
+      String cleanup = formattedText.processFormattedText(userSubmittedString, new StringBuffer()).trim();
 
       return cleanup;
    }
