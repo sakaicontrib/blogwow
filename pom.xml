@@ -72,5 +72,50 @@
                 <module>impl</module>
             </modules>
         </profile>
+        <profile>
+          <id>snapshots</id>
+          <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+              <name>snapshots</name>
+            </property>
+          </activation>
+          <repositories>
+            <repository>
+              <id>sonatype-nexus-snapshots</id>
+              <name>Sonatype Nexus Snapshots</name>
+              <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+              <releases>
+                <enabled>false</enabled>
+              </releases>
+              <snapshots>
+                <enabled>true</enabled>
+              </snapshots>
+            </repository>
+          </repositories>        
+      </profile>
     </profiles>
+
+    <!-- ensure 2.5.0 jars can be found -->
+    <repositories>
+        <repository>
+            <id>sakai-maven</id>
+            <name>Sakai Maven Repo</name>
+            <layout>default</layout>
+            <url>http://source.sakaiproject.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>default</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 </project>
