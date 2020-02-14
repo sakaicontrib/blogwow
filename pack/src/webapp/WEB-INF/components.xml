@@ -22,6 +22,7 @@
         <property name="entityBroker" ref="org.sakaiproject.entitybroker.EntityBroker" />
 <!--        <property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />-->
         <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService"/>
+        <property name="formattedText" ref="org.sakaiproject.util.api.FormattedText" />
     </bean>
 
     <bean id="org.sakaiproject.blogwow.logic.BlogLogic"
