@@ -917,4 +917,28 @@ public class TSite implements Site {
         public void deleteGroup(Group group) {
 		// TODO Auto-generated method stub
         }
+
+		@Override
+		public RealmLockMode getRealmLock() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public RealmLockMode getLockForReference(String reference) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void setLockForReference(String reference, RealmLockMode type) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public List<String[]> getRealmLocks() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

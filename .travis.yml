@@ -10,8 +10,9 @@ before_install:
   
 language: java
 jdk:
-  - oraclejdk8
+  - openjdk8
 sudo: false
+
 cache:
  directories:
  - $HOME/.m2
@@ -20,6 +21,3 @@ cache:
 # This makes the cache smaller and helps highlight problems with a clean build
 before_cache:
  - find $HOME/.m2/repository/org/sakaiproject -name \*-SNAPSHOT.\*  -delete
-
-install:
- - mvn install -Psnapshots -DskipTests=true -Dmaven.javadoc.skip=true -V -B
