@@ -1,17 +1,18 @@
 /**
- * $Id$
- * $URL$
- * ErrorHandler.java - blog-wow - Aug 1, 2008 12:20:19 PM - azeckoski
- **************************************************************************
- * Copyright (c) 2008 Aaron Zeckoski
- * Licensed under the Apache License, Version 2.0
- * 
- * A copy of the Apache License has been included in this 
- * distribution and is available at: http://www.apache.org/licenses/LICENSE-2.0.txt
+ * Copyright (c) 2003-2020 The Apereo Foundation
  *
- * Aaron Zeckoski (azeckoski @ gmail.com) (aaronz @ vt.edu) (aaron @ caret.cam.ac.uk)
+ * Licensed under the Educational Community License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *             http://opensource.org/licenses/ecl2
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package org.sakaiproject.blogwow.tool.beans;
 
 import uk.org.ponder.messageutil.TargettedMessage;
