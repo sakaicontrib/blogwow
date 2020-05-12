@@ -40,6 +40,7 @@
     <property name="entryLogic" ref="org.sakaiproject.blogwow.logic.EntryLogic" />
     <property name="commentLogic" ref="org.sakaiproject.blogwow.logic.CommentLogic" />
     <property name="externalLogic" ref="org.sakaiproject.blogwow.logic.ExternalLogic" />
+    <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
     <property name="locale" ref="requestLocale" />
 	<property name="messageLocator" ref="messageLocator" />
 	<property name="messages" ref="targettedMessageList"/>
