@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.blogwow.constants.BlogConstants;
 import org.sakaiproject.blogwow.logic.BlogLogic;
 import org.sakaiproject.blogwow.logic.CommentLogic;
@@ -58,6 +59,7 @@ public class BlogViewProducer implements ViewComponentProducer, ViewParamsReport
     private Locale locale;
     private ExternalLogic externalLogic;
     private MessageLocator messageLocator;
+    private ServerConfigurationService serverConfigurationService;
 
     private TargettedMessageList messages;
 	public void setMessages(TargettedMessageList messages) {
@@ -83,12 +85,16 @@ public class BlogViewProducer implements ViewComponentProducer, ViewParamsReport
         if (!ExternalLogic.NO_LOCATION.equals(externalLogic.getCurrentLocationId())) {
         	navBarRenderer.makeNavBar(tofill, "navIntraTool:", VIEW_ID);
         }
-        List<BlogWowBlog> blogs = new ArrayList<BlogWowBlog>();
+        List<BlogWowBlog> blogs = new ArrayList<>();
         if(params.blogid == null){
-        	//this is a "group" view, so display all available blogs:
-        	blogs = blogLogic.getAllVisibleBlogs(params.locationId, null, true, 0, 0);
+            //this is a "group" view, so display all available blogs:
+            if (serverConfigurationService.getBoolean("blogwow.allow-list-all-blogs", true)) {
+                blogs = blogLogic.getAllVisibleBlogs(params.locationId, null, true, 0, 0);
+            } else {
+                blogs = new ArrayList<>();
+            }
         }else{
-        	blogs.add(blogLogic.getBlogById(params.blogid));
+            blogs.add(blogLogic.getBlogById(params.blogid));
         }
         
         for(BlogWowBlog blog : blogs){
@@ -321,5 +327,9 @@ public class BlogViewProducer implements ViewComponentProducer, ViewParamsReport
 
     public void setMessageLocator(MessageLocator messageLocator) {
         this.messageLocator = messageLocator;
+    }
+
+    public void setServerConfigurationService(ServerConfigurationService serverConfigurationService) {
+        this.serverConfigurationService = serverConfigurationService;
     }
 }
