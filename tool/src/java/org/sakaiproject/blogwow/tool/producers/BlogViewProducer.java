@@ -123,20 +123,20 @@ public class BlogViewProducer implements ViewComponentProducer, ViewParamsReport
         	profileText = "";
         }
         UIVerbatim.make(blogdiv, "profile-verbatim-text", profileText);
-        
-        
 
-        String profileImageUrl = externalLogic.useGlobalProfile() ? externalLogic
-                .getProfileImageUrl(blog.getOwnerId()) : blog.getImageUrl();
+        String profileImageUrl = blog.getImageUrl();
+        String profileFormattedUrl = "javascript:;";
+        final String siteId = blog.getLocation().replace("/site/", "");
+
+        if(externalLogic.useGlobalProfile()){
+        	profileImageUrl = "/direct/" +  externalLogic.getProfileEntityPrefix()+ "/" + blog.getOwnerId() + "/image/thumb?siteId=" + siteId;
+        	profileFormattedUrl = "/direct/" +  externalLogic.getProfileEntityPrefix()+ "/" + blog.getOwnerId() + "/formatted";
+        }
         if ("".equals(profileImageUrl)) {
             profileImageUrl = null; // this will use the default in the template
         }
-        UILink.make(blogdiv, "profile-image", profileImageUrl);
 
-        String profileFormattedUrl = "javascript:;";
-        if(externalLogic.useGlobalProfile()){
-        	profileFormattedUrl = "/direct/" +  externalLogic.getProfileEntityPrefix()+ "/" + blog.getOwnerId() + "/formatted";
-        }
+        UILink.make(blogdiv, "profile-image", profileImageUrl);
         UILink.make(blogdiv, "profile-formatted", profileFormattedUrl);
         UIOutput.make(blogdiv, "profile-name", externalLogic.getUserDisplayName(blog.getOwnerId()));
         

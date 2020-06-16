@@ -155,14 +155,6 @@ public interface ExternalLogic {
     public boolean useGlobalProfile();
 
     /**
-     * Get the users profile picture URL
-     * 
-     * @param userId the internal user id (not username)
-     * @return the image URL if there is one OR null if none
-     */
-    public String getProfileImageUrl(String userId);
-
-    /**
      * Register events related to the blog entities
      * 
      * @param eventName the name of the event (e.g. blog.create)
