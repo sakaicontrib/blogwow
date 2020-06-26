@@ -167,11 +167,6 @@ public class ExternalLogicStub implements ExternalLogic {
         return "http://server:8080/direct/blog/123/";
     }
 
-	public String getProfileImageUrl(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String getProfileText(String userId) {
 		// TODO Auto-generated method stub
 		return null;

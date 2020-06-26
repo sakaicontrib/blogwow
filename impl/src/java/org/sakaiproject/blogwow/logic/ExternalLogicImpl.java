@@ -269,40 +269,6 @@ public class ExternalLogicImpl implements ExternalLogic {
       return ret;
    }
 
-   /**
-    * Get the user's profile picture URL
-    * 
-    * @param userId
-    *            the internal user id (not username)
-    * @return true if the user has admin access, false otherwise
-    */
-   public String getProfileImageUrl(String userId)
-   {
-      String imageUrl = null;
-      try {
-
-         Object sakaiPerson = entityBroker.fetchEntity( new EntityReference(getProfileEntityPrefix(), userId).toString() );
-         if (sakaiPerson != null) {
-           	try {
-           		//By default we assume this is a Profile2 profile
-        	 imageUrl = (String) reflectUtil.getFieldValue(sakaiPerson, "imageUrl");
-           	} catch (FieldnameNotFoundException e) {
-           		//is this a old profile?
-           		try {
-           			imageUrl = (String) reflectUtil.getFieldValue(sakaiPerson, "pictureUrl");
-           		} catch (FieldnameNotFoundException fne) {
-           			//nothing to do
-           		}
-           	}
-           	
-         }
-      } catch (RuntimeException e) {
-         log.warn("Failed getting profile for " + userId + " or user not found: " + e.getMessage(), e);
-      }
-      if ("".equals(imageUrl)) { imageUrl = null; }
-      return imageUrl;
-   }
-
    public void registerEntityEvent(String eventName, Class<?> entityClass, String entityId) {
        String ref = getEntityReference(entityClass, entityId);
        if (ref != null) {
