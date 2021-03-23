@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.sakaiproject.blogwow.constants.BlogConstants;
 import org.sakaiproject.blogwow.model.BlogWowEntry;
@@ -151,7 +151,7 @@ public class BlogWowDaoImpl extends HibernateGeneralGenericDao implements BlogWo
          }
       }
       Session session = getSessionFactory().getCurrentSession();
-      Query query = session.createQuery(hql);
+      Query<BlogWowEntry> query = session.createQuery(hql);
       query.setFirstResult(start);
       if (limit > 0) {
          query.setMaxResults(limit);
@@ -327,7 +327,7 @@ public class BlogWowDaoImpl extends HibernateGeneralGenericDao implements BlogWo
       }
       
       Session session = getSessionFactory().getCurrentSession();
-      Query query = session.createQuery(hql);
+      Query<BlogWowEntry> query = session.createQuery(hql);
 
       if (limit > 0) {
          query.setMaxResults(limit);
