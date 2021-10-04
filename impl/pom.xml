@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
-        <version>21-SNAPSHOT</version>
+        <version>22-SNAPSHOT</version>
     </parent>
 
     <dependencies>
