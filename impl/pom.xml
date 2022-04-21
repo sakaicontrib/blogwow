@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
-        <version>21-SNAPSHOT</version>
+        <version>22-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -133,7 +133,6 @@
                 <includes>
                     <include>hibernate-test.xml</include>
                     <include>hibernate.properties</include>
-                    <include>log4j.properties</include>
                 </includes>
                 <filtering>false</filtering>
             </testResource>
