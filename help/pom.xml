@@ -9,6 +9,7 @@
         <groupId>org.sakaiproject.blogwow</groupId>
         <artifactId>sakai-blogwow-base</artifactId>
         <version>22-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <organization>
