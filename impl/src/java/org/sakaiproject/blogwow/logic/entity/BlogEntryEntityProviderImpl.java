@@ -54,6 +54,18 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
       this.developerHelperService = developerHelperService;
    }
 
+   /**
+    * Require a logged-in user; entitybroker will otherwise fabricate an anonymous id.
+    * We want these endpoints to be auth-only.
+    */
+   private String requireCurrentUserId() {
+      String userRef = developerHelperService.getCurrentUserReference();
+      if (userRef == null) {
+         throw new SecurityException("Authentication required to access blog entries");
+      }
+      return developerHelperService.getUserIdFromRef(userRef);
+   }
+
    /* (non-Javadoc)
     * @see org.sakaiproject.entitybroker.entityprovider.EntityProvider#getEntityPrefix()
     */
@@ -63,6 +75,7 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
 
    public boolean entityExists(String id) {
       // entity is real if there are any entries that match this id
+      requireCurrentUserId();
       String entryId = id;
       if (entryLogic.entryExists(entryId)) {
          return true;
@@ -71,6 +84,7 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
    }
 
    public String createEntity(EntityReference ref, Object entity) {
+      requireCurrentUserId();
       BlogWowEntry incoming = (BlogWowEntry) entity;
       if (incoming.getBlog() == null || incoming.getBlog().getId() == null) {
          throw new IllegalArgumentException("The blog.id must be set in order to create an entry");
@@ -122,6 +136,7 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
    }
 
    public Object getEntity(EntityReference ref) {
+      requireCurrentUserId();
       String entryId = ref.getId();
       if (entryId == null) {
          return new BlogWowEntry();
@@ -134,6 +149,7 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
    }
 
    public void deleteEntity(EntityReference ref) {
+      requireCurrentUserId();
       String entryId = ref.getId();
       if (!entryLogic.entryExists(entryId)) {
          throw new IllegalArgumentException("Cannot find a blog entry to delete with this reference: " + ref);
@@ -142,6 +158,7 @@ public class BlogEntryEntityProviderImpl implements BlogEntryEntityProvider, Cor
    }
 
    public List<?> getEntities(EntityReference ref, Search search) {
+      requireCurrentUserId();
       if (search == null || search.isEmpty()) {
          throw new IllegalArgumentException("Must specify at least one blog id in the 'blogIds' param to get entries from");
       }

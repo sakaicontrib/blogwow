@@ -55,6 +55,18 @@ public class BlogEntityProviderImpl implements BlogEntityProvider, CoreEntityPro
       this.developerHelperService = developerHelperService;
    }
 
+   /**
+    * Require a logged-in user; entitybroker will otherwise fabricate an anonymous id.
+    * We want these endpoints to be auth-only.
+    */
+   private String requireCurrentUserId() {
+      String userRef = developerHelperService.getCurrentUserReference();
+      if (userRef == null) {
+         throw new SecurityException("Authentication required to access blog entities");
+      }
+      return developerHelperService.getUserIdFromRef(userRef);
+   }
+
    /* (non-Javadoc)
     * @see org.sakaiproject.entitybroker.entityprovider.EntityProvider#getEntityPrefix()
     */
@@ -64,6 +76,7 @@ public class BlogEntityProviderImpl implements BlogEntityProvider, CoreEntityPro
 
    public boolean entityExists(String id) {
       // entity is real if there are any entries that match this id
+      requireCurrentUserId();
       String blogId = id;
       if (blogLogic.getBlogById(blogId) != null) {
          return true;
@@ -73,14 +86,17 @@ public class BlogEntityProviderImpl implements BlogEntityProvider, CoreEntityPro
 
    // Added for compatibility
    public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
+       requireCurrentUserId();
        return createEntity(ref, entity);
    }
 
    public void updateEntity(EntityReference ref, Object entity, Map<String, Object> params) {
+       requireCurrentUserId();
        updateEntity(ref, entity);
    }
 
    public String createEntity(EntityReference ref, Object entity) {
+      requireCurrentUserId();
       BlogWowBlog incoming = (BlogWowBlog) entity;
       if (incoming.getLocation() == null) {
          throw new IllegalArgumentException("The blog locationId must be set to create a blog, " +
@@ -116,6 +132,7 @@ public class BlogEntityProviderImpl implements BlogEntityProvider, CoreEntityPro
    }
 
    public Object getEntity(EntityReference ref) {
+      requireCurrentUserId();
       String blogId = ref.getId();
       if (blogId == null) {
          return new BlogWowBlog();
@@ -128,10 +145,16 @@ public class BlogEntityProviderImpl implements BlogEntityProvider, CoreEntityPro
    }
 
    public List<?> getEntities(EntityReference ref, Search search) {
+      requireCurrentUserId();
       String locationId = developerHelperService.getCurrentLocationReference();
       if (search != null && !search.isEmpty()) {
          Restriction restriction = search.getRestrictionByProperty("location");
-         locationId = (String) restriction.getSingleValue();
+         if (restriction != null) {
+            locationId = (String) restriction.getSingleValue();
+         }
+      }
+      if (locationId == null) {
+         throw new IllegalArgumentException("Must specify a location to list blogs (search param 'location' or tool context)");
       }
       List<BlogWowBlog> blogs = blogLogic.getAllVisibleBlogs(locationId, null, true, 0, 50);
       return blogs;

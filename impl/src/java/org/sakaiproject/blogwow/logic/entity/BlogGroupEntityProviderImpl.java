@@ -19,6 +19,7 @@ import org.sakaiproject.blogwow.logic.BlogLogic;
 import org.sakaiproject.entitybroker.EntityBroker;
 import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
 import org.sakaiproject.entitybroker.entityprovider.capabilities.AutoRegisterEntityProvider;
+import org.sakaiproject.entitybroker.DeveloperHelperService;
 
 public class BlogGroupEntityProviderImpl  implements BlogGroupEntityProvider, CoreEntityProvider, AutoRegisterEntityProvider {
 
@@ -30,6 +31,18 @@ public class BlogGroupEntityProviderImpl  implements BlogGroupEntityProvider, Co
     private EntityBroker entityBroker;
     public void setEntityBroker(EntityBroker entityBroker) {
         this.entityBroker = entityBroker;
+    }
+
+    private DeveloperHelperService developerHelperService;
+    public void setDeveloperHelperService(DeveloperHelperService developerHelperService) {
+        this.developerHelperService = developerHelperService;
+    }
+
+    private void requireCurrentUserId() {
+        String userRef = developerHelperService.getCurrentUserReference();
+        if (userRef == null) {
+            throw new SecurityException("Authentication required to access blog group entities");
+        }
     }
 
 
@@ -47,6 +60,7 @@ public class BlogGroupEntityProviderImpl  implements BlogGroupEntityProvider, Co
      */
     public boolean entityExists(String id) {
         // entity is real if there are any blogs in this location (id should be an entity ref)
+        requireCurrentUserId();
         String locationId = "/site/" + id;
         if (entityBroker.entityExists(locationId)) {
             // entity container is real, check for number of blogs
